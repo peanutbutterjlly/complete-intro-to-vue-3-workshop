@@ -1,10 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body></body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Made up show/movie</title>
+</head>
+
+<body>
+  <h1>Playground</h1>
+  <div id="app">
+    <ul v-if="characters.length">
+      <li v-for="character in characters">{{ character }}</li>
+    </ul>
+    <ul v-else>
+      <li>No characters found</li>
+    </ul>
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp } = Vue;
+    const app = createApp({
+      data() {
+        return {
+          message: 'Hello Vue!',
+          characters: [
+            'kyle',
+            'jake',
+            'jerry',
+          ]
+        };
+      }
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+
 </html>
