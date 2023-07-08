@@ -23,12 +23,19 @@
     <ul v-for="character in characters">
       <li v-if="character.fav">Favorite: {{ character.name }}</li>
     </ul>
+
     <h2>Add a character</h2>
     <form>
       <label for="name">Name: </label>
       <input id="name" type="text" />
+      <label for="sex">Sex: </label>
+      <input id="sex" type="text" />
       <button @click="addCharacter">Submit</button>
     </form>
+
+    <hr>
+
+    <p>How many male characters are there? {{ genderCount }}</p>
   </div>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script>
@@ -38,18 +45,24 @@
         return {
           message: 'Hello Vue!',
           characters: [
-            { name: 'Luke Skywalker', fav: false, },
-            { name: 'Darth Vader', fav: false, },
-            { name: 'Han Solo', fav: false, },
-            { name: 'Leia Organa', fav: false, },
+            { name: 'Luke Skywalker', fav: false, sex: 'male', },
+            { name: 'Darth Vader', fav: false, sex: 'male', },
+            { name: 'Han Solo', fav: false, sex: 'male', },
+            { name: 'Leia Organa', fav: false, sex: 'female', },
           ]
         };
+      },
+      computed: {
+        genderCount() {
+          return this.characters.filter(character => character.sex === 'male').length;
+        }
       },
       methods: {
         addCharacter(event) {
           event.preventDefault();
           this.characters.push({
-            name: event.target.form[0].value,
+            name: event.target.form.name.value,
+            sex: event.target.form.sex.value,
           });
         }
       }
