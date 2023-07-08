@@ -12,11 +12,23 @@
   <h1>Playground</h1>
   <div id="app">
     <ul v-if="characters.length">
-      <li v-for="character in characters">{{ character }}</li>
+      <li v-for="character in characters">{{ character.name }}
+        <button @click="character.fav = !character.fav">Favorite?</button>
+      </li>
     </ul>
     <ul v-else>
       <li>No characters found</li>
     </ul>
+
+    <ul v-for="character in characters">
+      <li v-if="character.fav">Favorite: {{ character.name }}</li>
+    </ul>
+    <h2>Add a character</h2>
+    <form>
+      <label for="name">Name: </label>
+      <input id="name" type="text" />
+      <button @click="addCharacter">Submit</button>
+    </form>
   </div>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script>
@@ -26,11 +38,20 @@
         return {
           message: 'Hello Vue!',
           characters: [
-            'kyle',
-            'jake',
-            'jerry',
+            { name: 'Luke Skywalker', fav: false, },
+            { name: 'Darth Vader', fav: false, },
+            { name: 'Han Solo', fav: false, },
+            { name: 'Leia Organa', fav: false, },
           ]
         };
+      },
+      methods: {
+        addCharacter(event) {
+          event.preventDefault();
+          this.characters.push({
+            name: event.target.form[0].value,
+          });
+        }
       }
     });
 
