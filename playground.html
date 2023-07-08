@@ -11,8 +11,9 @@
 <body>
   <h1>Playground</h1>
   <div id="app">
-    <h1>Counter</h1>
+    <h1>{{ displayTitle }}</h1>
     <p>Counter: {{ count }}</p>
+    <p>Optimized increment amount: {{ optimizedIncrementAmount }}</p>
     <p :data-increment-by="incrementAmount">Increment amount: {{ incrementAmount }}</p>
     <!-- <button @click="count++">Increment Count</button> -->
     <!-- <button @click="incrementCount">Increment Count</button> -->
@@ -23,6 +24,7 @@
       <input type="number" id="increment amount" v-model="incrementAmount" />
       <!-- <input type="number" id="increment amount" v-bind:value="incrementAmount" v-on:input="changeIncrementAmount" /> -->
     </div>
+
     <hr>
 
     <p v-if="message.length % 2 == 0">Even: {{ message }}</p>
@@ -38,17 +40,35 @@
       data() {
         return {
           message: 'Hello Vue!',
+          counterTitle: 'Counter',
           listOfNumbers: [1, 2, 3, 4, 5],
           count: 0,
           incrementAmount: 1,
         };
+      },
+      computed: {
+        displayTitle() {
+          if (this.count > 20) {
+            return `Counter is greater than 20`;
+          } else {
+            return this.counterTitle;
+          }
+        },
+        optimizedIncrementAmount() {
+          return this.displayTitle.length * this.incrementAmount;
+        }
       },
       methods: {
         // changeIncrementAmount(event) {
         //   this.incrementAmount = Number(event.target.value);
         // },
         incrementCount() {
-          this.count += this.incrementAmount;
+          this.count += this.optimizedIncrementAmount;
+        }
+      },
+      watch: {
+        count(newValue) {
+          console.log(newValue);
         }
       }
     });
