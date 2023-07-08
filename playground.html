@@ -13,6 +13,7 @@
   <div id="app">
     <h1>Counter</h1>
     <p>Counter: {{ count }}</p>
+    <p :data-increment-by="incrementAmount">Increment amount: {{ incrementAmount }}</p>
     <!-- <button @click="count++">Increment Count</button> -->
     <!-- <button @click="incrementCount">Increment Count</button> -->
     <button v-on:click="incrementCount">Increment Count</button>
