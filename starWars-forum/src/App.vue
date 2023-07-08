@@ -1,5 +1,11 @@
 <script>
+import CounterButton from './components/CounterButton.vue';
+import Statistics from './components/Statistics.vue';
 export default {
+  components: {
+    CounterButton,
+    Statistics,
+  },
   data() {
     return {
       message: 'Hello Vue!',
@@ -11,17 +17,16 @@ export default {
       ]
     };
   },
-  computed: {
-    genderCount() {
-      return this.characters.filter(character => character.sex === 'male').length;
-    }
-  },
   methods: {
     addCharacter(event) {
       event.preventDefault();
+      const { name, sex } = event.target.form;
+      if (!name.value || !sex.value) {
+        return;
+      }
       this.characters.push({
-        name: event.target.form.name.value,
-        sex: event.target.form.sex.value,
+        name: name.value,
+        sex: sex.value,
       });
     }
   }
@@ -47,12 +52,15 @@ export default {
     <h2>Add a character</h2>
     <form>
       <label for="name">Name: </label>
-      <input id="name" type="text" />
+      <input id="name" type="text" required/>
       <label for="sex">Sex: </label>
-      <input id="sex" type="text" />
-      <button @click="addCharacter">Submit</button>
+      <input id="sex" type="text"  required/>
+      <button type="submit" @click="addCharacter">Submit</button>
     </form>
     <hr>
-    <p>How many male characters are there? {{ genderCount }}</p>
+    <Statistics :characters="characters"/>
+    <hr>
+
+    <CounterButton />
   </main>
 </template>
