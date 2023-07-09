@@ -8,7 +8,7 @@ export default {
   },
   data() {
     return {
-      message: 'Hello Vue!',
+      message: 'Counter example',
       characters: [
         { name: 'Luke Skywalker', fav: false, sex: 'male', },
         { name: 'Darth Vader', fav: false, sex: 'male', },
@@ -28,6 +28,9 @@ export default {
         name: name.value,
         sex: sex.value,
       });
+    },
+    changeMessage() {
+      this.message = 'Counter updated';
     }
   }
 }
@@ -46,6 +49,7 @@ export default {
     <ul v-else>
       <li>No characters found</li>
     </ul>
+    <h2>Favorite Characters</h2>
     <ul v-for="(character, index) in characters" :key="`fav-${index}`">
       <li v-if="character.fav">Favorite: {{ character.name }}</li>
     </ul>
@@ -60,7 +64,7 @@ export default {
     <hr>
     <Statistics :characters="characters"/>
     <hr>
-
-    <CounterButton />
+    <h2>{{ message }}</h2>
+    <CounterButton @increment="changeMessage"/>
   </main>
 </template>
