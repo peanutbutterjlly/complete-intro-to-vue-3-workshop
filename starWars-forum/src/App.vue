@@ -1,9 +1,11 @@
 <script>
 import CounterButton from './components/CounterButton.vue';
+import GenericButton from './components/GenericButton.vue';
 import Statistics from './components/Statistics.vue';
 export default {
   components: {
     CounterButton,
+    GenericButton,
     Statistics,
   },
   data() {
@@ -43,7 +45,7 @@ export default {
   <main>
     <ul v-if="characters.length">
       <li v-for="(character, index) in characters" :key="`char-${index}`">{{ character.name }}
-        <button @click="character.fav = !character.fav">Favorite?</button>
+        <GenericButton @click="character.fav = !character.fav">Favorite?</GenericButton>
       </li>
     </ul>
     <ul v-else>
@@ -59,7 +61,7 @@ export default {
       <input id="name" type="text" required/>
       <label for="sex">Sex: </label>
       <input id="sex" type="text"  required/>
-      <button type="submit" @click="addCharacter">Submit</button>
+      <GenericButton type="submit" @click="addCharacter">Submit</GenericButton>
     </form>
     <hr>
     <Statistics :characters="characters"/>

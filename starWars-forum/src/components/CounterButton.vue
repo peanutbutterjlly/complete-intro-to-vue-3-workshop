@@ -1,5 +1,9 @@
 <script>
+import GenericButton from './GenericButton.vue';
 export default {
+    components: {
+        GenericButton,
+    },
     data: () => ({
         counter: 0,
     }),
@@ -17,7 +21,7 @@ export default {
     <main>
         <p>{{ counter }}</p>
         <div>
-            <button @click="updateCount">Increment</button>
+            <GenericButton @click="updateCount">Increment</GenericButton>
         </div>
     </main>
 </template>
