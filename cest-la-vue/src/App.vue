@@ -42,7 +42,12 @@ export default {
       <a href="#" @click.prevent="showUsersPage">Users</a>
     </nav>
   </header>
-  <component :is="renderPage" />
+  <Suspense>
+    <component :is="renderPage" />
+    <template #fallback>
+      <p>Loading...</p>
+    </template>
+  </Suspense>
 </template>
 
 <style>

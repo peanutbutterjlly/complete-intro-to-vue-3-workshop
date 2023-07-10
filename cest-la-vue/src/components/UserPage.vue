@@ -10,33 +10,13 @@
 <script>
 import UserCard from "./UserCard.vue";
 export default {
+  async setup() {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    const users = await response.json();
+    return { users };
+  },
   components: {
     UserCard,
-  },
-  created() {
-    this.fetchUsers();
-  },
-  data: () => ({
-    currentPage: "UsersPage",
-    users: [{}, {}, {}, {}],
-  }),
-  methods: {
-    /**
-     * Fetches users from a remote API and stores them in the component's data property.
-     *
-     * @return {Promise<void>} - A promise that resolves once the users have been fetched and stored.
-     */
-    async fetchUsers() {
-      try {
-        const response = await fetch(
-          "https://jsonplaceholder.typicode.com/users"
-        );
-        const data = await response.json();
-        this.users = data;
-      } catch (error) {
-        console.error(error);
-      }
-    },
   },
 };
 </script>
