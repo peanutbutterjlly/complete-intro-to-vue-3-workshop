@@ -1,4 +1,6 @@
-<script></script>
+<script setup>
+import { count } from "../composables/useState";
+</script>
 
 <template>
   <main>
@@ -7,6 +9,9 @@
       This is a place to manage various things: todos, users, posts, etc.
       Whatever your mind desires!
     </p>
+    <h2>Global count</h2>
+    <p>{{ count }}</p>
+    <button class="blue" @click="count++">increment global count</button>
   </main>
 </template>
 
@@ -39,5 +44,9 @@ button {
   color: green;
   background-color: rgb(213, 255, 213);
   cursor: pointer;
+}
+
+.blue {
+  background-color: aqua;
 }
 </style>

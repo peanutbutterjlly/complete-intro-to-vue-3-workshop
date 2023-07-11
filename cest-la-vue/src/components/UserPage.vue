@@ -4,11 +4,14 @@
     <ul>
       <UserCard v-for="user in users" :key="`user-${user.id}`" :user="user" />
     </ul>
+    <h2>Count</h2>
+    <p>{{ count }}</p>
   </div>
 </template>
 
 <script setup>
 import UserCard from "./UserCard.vue";
+import { count } from "../composables/useState";
 
 const response = await fetch("https://jsonplaceholder.typicode.com/users");
 const users = await response.json();
