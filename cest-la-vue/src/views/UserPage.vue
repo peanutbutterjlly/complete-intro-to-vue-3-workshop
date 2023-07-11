@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import UserCard from "./UserCard.vue";
+import UserCard from "../components/UserCard.vue";
 import { count } from "../composables/useState";
 
 const response = await fetch("https://jsonplaceholder.typicode.com/users");
