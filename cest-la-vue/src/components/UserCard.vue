@@ -6,15 +6,13 @@
   </li>
 </template>
 
-<script>
-export default {
-  props: {
-    user: {
-      type: Object,
-      required: true,
-    },
+<script setup>
+defineProps({
+  user: {
+    type: Object,
+    required: true,
   },
-};
+});
 </script>
 
 <style>

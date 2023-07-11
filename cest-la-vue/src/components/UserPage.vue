@@ -7,18 +7,11 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import UserCard from "./UserCard.vue";
-export default {
-  async setup() {
-    const response = await fetch("https://jsonplaceholder.typicode.com/users");
-    const users = await response.json();
-    return { users };
-  },
-  components: {
-    UserCard,
-  },
-};
+
+const response = await fetch("https://jsonplaceholder.typicode.com/users");
+const users = await response.json();
 </script>
 
 <style>
