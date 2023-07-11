@@ -1,5 +1,15 @@
 <script setup>
 import { count } from "../composables/useState";
+import { useRouter } from "vue-router";
+import { watch } from "vue";
+
+watch(count, () => {
+  if (count.value > 5) {
+    router.push("/user");
+  }
+});
+
+const router = useRouter();
 </script>
 
 <template>

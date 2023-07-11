@@ -1,11 +1,22 @@
-<script></script>
+<script setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+const emailInput = ref("");
+const router = useRouter();
+
+function login() {
+  if (emailInput.value) {
+    router.push("/");
+  }
+}
+</script>
 
 <template>
   <main>
     <h1>Login</h1>
     <label for="email">Email</label>
-    <input type="email" />
-    <button>Continue with email</button>
+    <input type="email" v-model="emailInput" />
+    <button @click="login">Continue with email</button>
   </main>
 </template>
 
